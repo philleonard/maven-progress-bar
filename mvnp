@@ -3,7 +3,7 @@ import sys
 import re
 import progressbar
 import argparse
-from colorama import init, Fore
+from colorama import init, Fore, Style
 
 init()
 progressbar.streams.wrap_stdout()
@@ -53,7 +53,10 @@ def match():
         matched = re.findall("[[0-9]+/[0-9]+]", line)
         if len(matched) > 0:
             if artifacts:
-                sys.stdout.write(line.strip("[INFO] "))
+                nline = line.strip("[INFO] ")
+                art = find_between(nline, "Building", "[")
+                fline = nline.replace(art, Style.BRIGHT + Fore.CYAN + art + Fore.RESET + Style.RESET_ALL)
+                sys.stdout.write(fline)
             prog = matched[0][1:len(matched[0]) - 1]
             fraction = prog.split("/")
             if bar is None or int(fraction[1]) is not current_max:
@@ -77,6 +80,15 @@ def match():
 
     sys.stderr.flush()
     progressbar.streams.flush()
+
+
+def find_between(s, first, last):
+    try:
+        start = s.index(first) + len(first)
+        end = s.index(last, start)
+        return s[start:end]
+    except ValueError:
+        return ""
 
 
 if __name__ == "__main__":
