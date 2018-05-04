@@ -4,10 +4,7 @@ Small Python app to show the progress of Maven builds in the command line.
 **Distill this madness:**
 ![install](https://thumbs.gfycat.com/EnchantedDeafeningKestrel-size_restricted.gif)
 
-**Into something informative**
-![progress](https://thumbs.gfycat.com/SkinnyPoisedHuia-size_restricted.gif)
-
-**Or with some more information about your build** 
+**Into something informative about your build**
 ![progress2](https://thumbs.gfycat.com/UnconsciousMelodicIvorygull-size_restricted.gif)
 
 ## Installation
@@ -20,6 +17,7 @@ sh install.sh
 ### Usage
 
 Simply pipe the output of any `mvn` command into `mvnp`. Some examples:
+
 ```bash
 # Simple clean install
 mvn clean install | mvnp
