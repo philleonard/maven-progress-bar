@@ -3,7 +3,9 @@ import sys
 import re
 import progressbar
 import argparse
+from colorama import init, Fore
 
+init()
 progressbar.streams.wrap_stdout()
 progressbar.streams.wrap_stderr()
 parser = argparse.ArgumentParser()
@@ -46,7 +48,7 @@ def match():
         match_error = re.findall("ERROR", line)
         if len(match_error) > 0 or (error & after_error):
             error = True
-            sys.stderr.write(line)
+            sys.stderr.write("[" + Fore.LIGHTRED_EX + "ERROR" + Fore.RESET + "]" + line.strip("[ERROR]"))
 
         matched = re.findall("[[0-9]+/[0-9]+]", line)
         if len(matched) > 0:
