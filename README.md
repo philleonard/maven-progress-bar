@@ -8,7 +8,7 @@ Small Python app to show the progress of Maven builds in the command line.
 ![progress](https://thumbs.gfycat.com/SkinnyPoisedHuia-size_restricted.gif)
 
 **Or with some more information about your build** 
-![progress](https://thumbs.gfycat.com/UnconsciousMelodicIvorygull-size_restricted.gif)
+![progress2](https://thumbs.gfycat.com/UnconsciousMelodicIvorygull-size_restricted.gif)
 
 ## Installation
 
