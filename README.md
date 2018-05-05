@@ -12,7 +12,7 @@ the [important stuff](https://xkcd.com/303/).
 
 The app requires that `python3` and `pip` be installed. Simply install using the bash script:
 ```bash
-sh install.sh
+./install.sh
 ```
 
 ### Usage
