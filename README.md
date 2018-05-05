@@ -1,5 +1,6 @@
 # Maven Progress Bar
-Small Python app to show the progress of Maven builds in the command line.
+Small Python app to show the progress of Maven builds in the command line, with a build ETA so that you can get back to
+the [important stuff](https://xkcd.com/303/).
 
 **Distill the verbose Maven output**
 ![install](https://thumbs.gfycat.com/EnchantedDeafeningKestrel-size_restricted.gif)

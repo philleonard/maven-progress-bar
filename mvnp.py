@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-w', action='store_true', help="Output WARNINGS produced by Maven")
 parser.add_argument('-dc', action='store_true', help="Disable all console colouring")
 parser.add_argument('-e', action='store_true', help="Output everything after ERROR produced by Maven")
-parser.add_argument('-t', action='store_true', help="Write estimated finish time. ☕️?")
+parser.add_argument('-t', action='store_true', help="Write estimated finish time. ☕️ or ⚔️ ? https://xkcd.com/303/")
 parser.add_argument('-n', action='store_true', help="Output artifact names built by Maven")
 args = parser.parse_args()
 warn = args.w
