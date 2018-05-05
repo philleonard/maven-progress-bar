@@ -3,13 +3,14 @@ import sys
 import re
 import progressbar
 import argparse
-from colorama import init, Fore, Style
+from colorama import init, Fore
 
 init()
 progressbar.streams.wrap_stdout()
 progressbar.streams.wrap_stderr()
 parser = argparse.ArgumentParser()
 parser.add_argument('-w', action='store_true', help="Output WARNINGS produced by Maven")
+parser.add_argument('-dc', action='store_true', help="Disable all console colouring")
 parser.add_argument('-e', action='store_true', help="Output everything after ERROR produced by Maven")
 parser.add_argument('-t', action='store_true', help="Write estimated finish time. ☕️?")
 parser.add_argument('-n', action='store_true', help="Output artifact names built by Maven")
@@ -18,19 +19,42 @@ warn = args.w
 artifacts = args.n
 absolute_time = args.t
 after_error = args.e
+disable_colour = args.dc
+
+
+def get_colour(colour):
+    if disable_colour:
+        return ""
+    return colour
+
 
 bar_format = \
     [
         "Maven build: ",
+        get_colour(Fore.YELLOW),
         progressbar.Percentage(),
+        get_colour(Fore.RESET),
         " ",
         progressbar.Counter(format='(%(value)d of %(max_value)d)'),
-        progressbar.Bar(),
+        get_colour(Fore.LIGHTGREEN_EX),
+        progressbar.Bar(marker="\u2588"),
+        get_colour(Fore.RESET),
         " ",
         progressbar.Timer(),
         " ",
-        progressbar.AbsoluteETA(format='Finishes: %(eta)s', format_finished='Finished at %(eta)s') if absolute_time else progressbar.AdaptiveETA()
+        get_colour(Fore.MAGENTA),
+        progressbar.AbsoluteETA(format='Finishes: %(eta)s', format_finished='Finished at %(eta)s')
+        if absolute_time else progressbar.AdaptiveETA(),
+        get_colour(Fore.RESET)
     ]
+
+
+def ansi_length(o):
+    ansi_occ = re.findall(r'\x1B\[[0-?]*[ -/]*[@-~]', o)
+    ansi_len = 0
+    for occ in ansi_occ:
+        ansi_len += len(occ)
+    return len(o) - ansi_len
 
 
 def match():
@@ -55,7 +79,7 @@ def match():
             if artifacts:
                 nline = line.strip("[INFO] ")
                 art = find_between(nline, "Building", "[")
-                fline = nline.replace(art, Style.BRIGHT + Fore.CYAN + art + Fore.RESET + Style.RESET_ALL)
+                fline = "{}  {}".format("⚒️️", nline.replace(art, get_colour(Fore.CYAN) + art + get_colour(Fore.RESET)))
                 sys.stdout.write(fline)
             prog = matched[0][1:len(matched[0]) - 1]
             fraction = prog.split("/")
@@ -64,11 +88,12 @@ def match():
                 bar = progressbar.ProgressBar(
                     widgets=bar_format,
                     widget_kwargs={'samples': 2},
-                    max_value=current_max,
-                    redirect_stdout=True)
+                    max_value=current_max + 1,
+                    redirect_stdout=True,
+                    custom_len=lambda o: ansi_length(o))
             count += 1
 
-            # Corner case to allow for chained mvn
+            # Corner case to allow for chained mvn, or if build resumed then sync
             if count > current_max:
                 count = int(fraction[0])
 
@@ -95,4 +120,4 @@ if __name__ == "__main__":
     try:
         match()
     except KeyboardInterrupt:
-        print("Build aborted")
+        progressbar.streams.unwrap_stdout()
