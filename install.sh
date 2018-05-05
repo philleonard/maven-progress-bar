@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 pip3 install -r requirements.txt
+cp mvnp.py mvnp
 chmod a+x mvnp
-cp mvnp /usr/local/bin
+mv mvnp /usr/local/bin
 mvnp --help
