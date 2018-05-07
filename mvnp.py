@@ -28,6 +28,11 @@ def get_colour(colour):
     return colour
 
 
+error_c = "[" + get_colour(Fore.LIGHTRED_EX) + "ERROR" + get_colour(Fore.RESET) + "]"
+info_c = "[" + get_colour(Fore.CYAN) + "INFO" + get_colour(Fore.RESET) + "]"
+warning_c = "[" + get_colour(Fore.YELLOW) + "WARNING" + get_colour(Fore.RESET) + "]"
+
+
 bar_format = \
     [
         "Maven build: ",
@@ -67,12 +72,12 @@ def match():
         if warn:
             match_warn = re.findall("WARN", line)
             if len(match_warn) > 0:
-                sys.stdout.write(line)
+                sys.stdout.write(line.replace("[WARNING]", warning_c))
 
         match_error = re.findall("ERROR", line)
         if len(match_error) > 0 or (error & after_error):
             error = True
-            sys.stderr.write("[" + Fore.LIGHTRED_EX + "ERROR" + Fore.RESET + "]" + line.strip("[ERROR]"))
+            sys.stderr.write(line.replace("[ERROR]", error_c).replace("[INFO]", info_c).replace("[WARNING]", warning_c))
 
         matched = re.findall("[[0-9]+/[0-9]+]", line)
         if len(matched) > 0:
