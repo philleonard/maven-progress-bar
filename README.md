@@ -15,7 +15,7 @@ The app requires that `python3` and `pip` be installed. Simply install using the
 ./install.sh
 ```
 
-### Usage
+## Usage
 
 Simply pipe the output of any `mvn` command into `mvnp`. Some examples:
 
