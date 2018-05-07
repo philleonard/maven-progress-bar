@@ -1,11 +1,11 @@
-# Maven Progress Bar
+# Maven Progress Bar 
 Small Python app to show the progress of Maven builds in the command line, with a build ETA so that you can get back to
 the [important stuff](https://xkcd.com/303/).
 
-**Distill the verbose Maven output**
+**Distill the verbose Maven output:**
 ![install](https://thumbs.gfycat.com/EnchantedDeafeningKestrel-size_restricted.gif)
 
-**Into something informative about your build**
+**Into something informative about your build:**
 ![progress](https://thumbs.gfycat.com/ZigzagAthleticCusimanse-size_restricted.gif)
 
 ## Installation
@@ -28,7 +28,7 @@ mvn -T 1.0C clean install | mvnp
 mvn -T 1.0C clean install | mvnp
 ```
 
-It also reports errors, and supports resuming builds:
+**It also reports errors, and supports resuming builds:**
 ![resuming](https://thumbs.gfycat.com/FocusedIdenticalCirriped-size_restricted.gif)
 
 ## TODO:
