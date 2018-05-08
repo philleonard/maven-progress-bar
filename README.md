@@ -27,11 +27,6 @@ mvn clean install | mvnp
 mvn -T 1.0C clean install | mvnp
 # Also supports chained builds
 (mvn install && mvn test && mvn package) | mvnp
-# Display ETA
-mvn clean install | mvnp -t
-Maven build:  46% (100 of 214)|██████████████                 | Finishes: 2018-05-07 10:17:14
-# Print other useful options
-mvnp --help
 ```
 
 **It also reports errors, and supports resuming builds:**
