@@ -15,6 +15,8 @@ The app requires that `python3` and `pip` be installed. Simply install using the
 ```bash
 ./install.sh
 ```
+May require sudo privileges to copy script to `/usr/local/bin`
+
 
 ## Usage
 
