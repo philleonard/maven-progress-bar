@@ -32,6 +32,13 @@ mvn -T 1.0C clean install | mvnp
 **It also reports errors, and supports resuming builds:**
 ![resuming](https://thumbs.gfycat.com/FocusedIdenticalCirriped-size_restricted.gif)
 
+## Tips
+```bash
+# Consider using an alias when you find the right config
+alias my-mvnp="mvnp -e -t -n"
+mvn clean install | my-mvp
+```
+
 ## TODO:
 - Create .bat and verify Windows operability
 - Consider using [curses](https://docs.python.org/3/howto/curses.html) for a more interactive display
