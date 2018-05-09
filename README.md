@@ -43,5 +43,6 @@ mvn clean install | my-mvp
 
 ## TODO:
 - Create .bat and verify Windows operability
+- Add cross platform build notifications
 - Consider using [curses](https://docs.python.org/3/howto/curses.html) for a more interactive display
 - Determine end of archive build for better ETA (currently beginning is read)
