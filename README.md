@@ -41,6 +41,15 @@ alias my-mvnp="mvnp -e -t -n"
 mvn clean install | my-mvp
 ```
 
+or even better, adding your own bash function to `~./bash_profile`:
+```bash
+function my-mvn { mvn "$@" | mvnp -t -e -n; }
+```
+and calling in such a manner:
+```bash
+my-mvn clean install
+```
+
 ## TODO:
 - Create .bat and verify Windows operability
 - Add cross platform build notifications
