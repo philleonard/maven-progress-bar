@@ -79,7 +79,7 @@ def match():
             error = True
             sys.stderr.write(line.replace("[ERROR]", error_c).replace("[INFO]", info_c).replace("[WARNING]", warning_c))
 
-        matched = re.findall("[[0-9]+/[0-9]+]", line)
+        matched = re.findall("\[[0-9]+/[0-9]+\]", line)
         if len(matched) > 0:
             if artifacts:
                 nline = line.strip("[INFO] ")
